@@ -62,7 +62,7 @@ jobs:
       - run:
           name: Build front-end
           command: |
-            ls */
+            ls
             cd frontend
             npm i
             npm run build
