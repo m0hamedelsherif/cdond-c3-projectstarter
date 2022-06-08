@@ -1,6 +1,6 @@
 version: 2.1
 
-# commands:
+commands:
 #   destroy-environment:
 #     description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
 #     parameters:
@@ -35,30 +35,23 @@ version: 2.1
 frontendbase: &frontendbase
     docker:
       - image: cimg/node:13.8.0
-    steps:
-      - checkout
-      - restore_cache:
-          keys: [frontend-build]
 
 backendbase: &backendbase
     docker:
       - image: cimg/node:13.8.0
-    steps:
-      - checkout
-      - restore_cache:
-          keys: [backend-build]
+=
 
 infrastructurebase: &infrastructurebase
     docker:
-      - image: amazon/aws-cli
-    steps:
-      - checkout
+      - image: amazon/aws-cli:latest
 
-            
 jobs:
   build-frontend:
     <<: *frontendbase
     steps:
+      - checkout
+      - restore_cache:
+          keys: [frontend-build]
       - run:
           name: Build front-end
           command: |
@@ -73,6 +66,9 @@ jobs:
   build-backend:
     <<: *backendbase
     steps:
+      - checkout
+      - restore_cache:
+          keys: [backend-build]
       - run:
           name: Back-end build
           command: |
