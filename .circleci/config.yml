@@ -34,7 +34,7 @@ version: 2.1
             
 frontendbase: &frontendbase
     docker:
-      - image: circleci/node:13.8.0
+      - image: cimg/node:13.8.0
     steps:
       - checkout
       - restore_cache:
@@ -42,7 +42,7 @@ frontendbase: &frontendbase
 
 backendbase: &backendbase
     docker:
-      - image: circleci/node:13.8.0
+      - image: cimg/node:13.8.0
     steps:
       - checkout
       - restore_cache:
@@ -62,7 +62,7 @@ jobs:
       - run:
           name: Build front-end
           command: |
-            cd ~/project/frontend
+            cd frontend
             npm i
             npm run build
       - save_cache:
