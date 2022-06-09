@@ -158,8 +158,8 @@ jobs:
   deploy-infrastructure:
     <<: *infrastructurebase
     steps:
-      - install-aws
       - checkout
+      - install-aws
       - run:
           name: Ensure back-end infrastructure exists
           command: |
