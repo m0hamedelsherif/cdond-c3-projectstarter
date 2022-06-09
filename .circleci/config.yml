@@ -194,15 +194,14 @@ jobs:
       - destroy-environment
 
   configure-infrastructure:
-    docker:
     <<: *infrastructurebase
     steps:
       - checkout
       - install-ansible
       - add_ssh_keys:
-        fingerprints: ["cb:f2:03:bb:83:11:da:24:7d:d5:0a:1e:93:a9:f5:11"]
+          fingerprints: ["cb:f2:03:bb:83:11:da:24:7d:d5:0a:1e:93:a9:f5:11"]
       - attach_workspace:
-          root: ~/
+          at: ~/
       - run:
           name: Configure server
           command: |
