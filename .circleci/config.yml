@@ -64,7 +64,7 @@ backendbase: &backendbase
 
 infrastructurebase: &infrastructurebase
     docker:
-      - image: cimg/base
+      - image: cimg/base:stable
 
 jobs:
   build-frontend:
