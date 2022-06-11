@@ -1,18 +1,18 @@
-  # create uda-backend directory
-  name: "create uda-backend directory"
+# create uda-backend directory
+- name: "create uda-backend directory"
   file:
     path: ~/uda-backend
     state: directory
 
-  # un archive artifact.tar.gz to uda-backend directory
-  name: "un archive artifact to uda-backend directory"
+# un archive artifact.tar.gz to uda-backend directory
+- name: "un archive artifact to uda-backend directory"
   unarchive:
     src: artifact.tar.gz
     dest: ~/uda-backend
 
-  # start uda-backend from dist folder
-  - name: "start uda-backend"
-    become: true
-    command: pm2 start -f ./main.js
-    args:
-      chdir: ~/uda-backend/dist
+# start uda-backend from dist folder
+- name: "start uda-backend"
+  become: true
+  command: pm2 start -f ./main.js
+  args:
+    chdir: ~/uda-backend/dist
