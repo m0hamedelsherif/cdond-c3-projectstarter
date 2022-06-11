@@ -14,5 +14,5 @@
   become: true
   npm:
     name: pm2
-    globally: yes
+    global: yes
 
