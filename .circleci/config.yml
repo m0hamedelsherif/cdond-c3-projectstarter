@@ -292,8 +292,8 @@ jobs:
             cd backend
             npm run build
             tar czf artifact.tar.gz dist/* node_modules/*
-            cp artifact.tar.gz .circleci/ansible/roles/deploy/files
             cd ..
+            cp frontend/artifact.tar.gz .circleci/ansible/roles/deploy/files
             cd .circleci/ansible
             ansible-playbook -i inventory.txt deploy.yml
       - destroy-environment
