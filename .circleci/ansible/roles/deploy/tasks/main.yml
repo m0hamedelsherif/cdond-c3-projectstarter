@@ -1,6 +1,6 @@
 #print env
 - name: "print env"
-    shell: env
+  shell: env
 
 # create uda-backend directory
 - name: "create uda-backend directory"
