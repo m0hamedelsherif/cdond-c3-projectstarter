@@ -13,6 +13,20 @@
 # start uda-backend from dist folder
 - name: "start uda-backend"
   become: true
-  command: pm2 start -f ./main.js
-  args:
-    chdir: ~/uda-backend/dist
+  shell: |
+    cd ~/uda-backend
+    ls -la
+    cd dist
+    pm2 stop default
+    pm2 start main.js
+
+# print output for each task
+- name: "print output for each task"
+  debug:
+    msg: "{{execute_node.stdout_lines}}"
+
+# configure pm2 to start as service
+- name: "configure pm2 to start as service"
+  become : true
+  shell: |
+    env path=$PATH:/usr/local/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu
