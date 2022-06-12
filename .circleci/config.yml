@@ -319,7 +319,7 @@ jobs:
       - run:
           name: Backend smoke test.
           command: |
-            BACKEND_IP=cat env.txt
+            BACKEND_IP=$(cat env.txt)
             echo  "Backend IP: ${BACKEND_IP}"
             export API_URL="http://${BACKEND_IP}:3030"
             echo "${API_URL}"
