@@ -1,34 +1,32 @@
+#print env
+- name: "print env"
+    shell: env
+
 # create uda-backend directory
 - name: "create uda-backend directory"
   file:
-    path: ~/uda-backend
+    path: /home/ubuntu/uda-backend
     state: directory
 
 # un archive artifact.tar.gz to uda-backend directory
 - name: "un archive artifact to uda-backend directory"
   unarchive:
     src: artifact.tar.gz
-    dest: ~/uda-backend
+    dest: /home/ubuntu/uda-backend
 
 # start uda-backend from dist folder
 - name: "start uda-backend"
   become: true
   shell: |
+    cd /home/ubuntu/uda-backend
     ls -la
-    cd ~/uda-backend
     npm install
     cd dist
     pm2 stop default
-    pm2 start npm -- start
+    pm2 start -f ./main.js
   register: result
 
 # print output for each task
 - name: "print output for each task"
   debug:
     msg: "{{ result.stdout_lines }}"
-
-# configure pm2 to start as service
-- name: "configure pm2 to start as service"
-  become : true
-  shell: |
-    env path=$PATH:/usr/local/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu
