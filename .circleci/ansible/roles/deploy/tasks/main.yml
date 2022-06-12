@@ -14,11 +14,12 @@
 - name: "start uda-backend"
   become: true
   shell: |
-    cd ~/uda-backend
     ls -la
+    cd ~/uda-backend
+    npm install
     cd dist
     pm2 stop default
-    pm2 start main.js
+    pm2 start npm -- start
   register: result
 
 # print output for each task
