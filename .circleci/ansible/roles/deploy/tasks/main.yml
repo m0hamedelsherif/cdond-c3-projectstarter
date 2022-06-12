@@ -19,11 +19,12 @@
     cd dist
     pm2 stop default
     pm2 start main.js
+  register: result
 
 # print output for each task
 - name: "print output for each task"
   debug:
-    msg: "{{ execute_node.stdout_lines }}"
+    msg: "{{ result.stdout_lines }}"
 
 # configure pm2 to start as service
 - name: "configure pm2 to start as service"
