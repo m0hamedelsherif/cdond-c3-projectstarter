@@ -23,7 +23,7 @@
 # print output for each task
 - name: "print output for each task"
   debug:
-    msg: "{{execute_node.stdout_lines}}"
+    msg: "{{ execute_node.stdout_lines }}"
 
 # configure pm2 to start as service
 - name: "configure pm2 to start as service"
