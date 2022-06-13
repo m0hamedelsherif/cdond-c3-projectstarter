@@ -368,7 +368,7 @@ jobs:
             aws cloudformation deploy \
                     --template-file .circleci/files/cloudfront.yml \
                     --stack-name cloudfront-stack \
-                    --parameter-overrides WorkflowID="udapeople-${CIRCLE_WORKFLOW_ID:0:7}" \
+                    --parameter-overrides WorkflowID="${CIRCLE_WORKFLOW_ID:0:7}" \
                     --tags project=udapeople
 
   cleanup:
@@ -392,6 +392,7 @@ jobs:
       - run:
           name: Remove old stacks and files
           command: |
+            echo "removing old stacks linked with ${OldWorkflowID}"
             if [[ "${STACKS[@]}" =~ "${OldWorkflowID}" ]]
             then
               aws cloudformation delete-stack --stack-name udapeople-backend-${OldWorkflowID}
