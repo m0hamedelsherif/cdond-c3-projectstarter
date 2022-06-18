@@ -391,7 +391,7 @@ jobs:
           command: |
             CurrentWorkflowID="${CIRCLE_WORKFLOW_ID:0:7}"
             # get old stack id from kvdb deployment_
-            OldWorkflowID=$(curl https://kvdb.io/${KVDB_BUCKET}/deployment_${CIRCLE_WORKFLOW_ID:0:7})
+            OldWorkflowID=$(curl https://kvdb.io/${KVDB_BUCKET}/deployment_"${CIRCLE_WORKFLOW_ID:0:7}")
             echo OldWorkflowID: "${OldWorkflowID}"
             if [[ ! -z "$OldWorkflowID" ]]
             then
